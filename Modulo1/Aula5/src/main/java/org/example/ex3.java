@@ -32,8 +32,11 @@ public class ex3 {
             case FAHRENHEIT:
                 valor = (celsius * 9 / 5) + 32;
                 break;
-            default:
+            case KELVIN:
                 valor = celsius + 273.15;
+                break;
+            default:
+                valor = celsius;
 
         }
         return valor;
@@ -44,8 +47,11 @@ public class ex3 {
             case CELSIUS:
                 valor = kelvin - 273.15;
                 break;
-            default:
+            case FAHRENHEIT:
                 valor = (kelvin * 9 / 5) - 459.67;
+                break;
+            default:
+                valor = kelvin;
         }
         return valor;
     }
@@ -56,8 +62,11 @@ public class ex3 {
             case CELSIUS:
                 valor = (fehrenheit - 32) * 5 / 9;
                 break;
-            default:
+            case KELVIN:
                 valor = (fehrenheit + 459.67) * 5 / 9;
+                break;
+            default:
+                valor = fehrenheit;
         }
         return valor;
     }
