@@ -1,7 +1,7 @@
 package org.example;
 
 import java.util.Scanner;
-
+import java.util.Random;
 public class ex2 {
     public static void main(String[] args) {
 
