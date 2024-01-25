@@ -1,6 +1,7 @@
+bibliotecas para o projeto final:
+
 BufferedReader FileReader
 BufferedWriter FileWriter
 
-
-HashSet
-Try catch
+try catch
+hashSet
