@@ -9,16 +9,17 @@ package org.example.Aula2;
 public class AparelhoDeSom {
 
     //Atributos
-    public String modelo;
-    public String marca;
-    public Integer ano;
-    public Float potencia;
-    public Integer voltagem;
-    public String[] conectores; //Usb, microfone, cd, dvd, radio
-    public Integer volume;
-    public Boolean ligado;
-    public Boolean discoInserido;
-    public Boolean usbConectado;
+    private String modelo;
+    private String marca;
+    private Integer ano;
+    private Float potencia;
+    private Integer voltagem;
+    private String[] conectores; //Usb, microfone, cd, dvd, radio
+    private Integer volume;
+    private Boolean ligado;
+    private Boolean discoInserido;
+    private Boolean usbConectado;
+    private Disco disco;
 
 
     //Ações
@@ -34,14 +35,24 @@ public class AparelhoDeSom {
     }
 
 
-    public void inserirDisco() {
-        if(!discoInserido)
+    public void inserirDisco(Disco disco) {
+        if(!discoInserido) {
             discoInserido = true;
+            this.disco = disco;
+        }
+        else {
+            System.out.println("Já há um disco inserido.");
+        }
     }
 
     public void retirarDisco() {
-        if(discoInserido)
+        if(discoInserido) {
             discoInserido = false;
+            this.disco = null;
+        }
+        else {
+            System.out.println("Nenhum disco inserido");
+        }
     }
 
     public void aumentarVol() {
@@ -54,11 +65,11 @@ public class AparelhoDeSom {
             volume--;
     }
 
-    public void avancarFaixa() {
+    private void avancarFaixa() {
 
     }
 
-    public void voltarFaixa() {
+    private void voltarFaixa() {
 
     }
 
@@ -93,6 +104,13 @@ public class AparelhoDeSom {
         this.ligado = false;
         this.discoInserido = false;
         this.usbConectado = false;
+    }
+
+    private String lerDados() {
+        if(discoInserido) {
+            return disco.fornecerDados();
+        }
+        return "Disco não encontrado.";
     }
 }
 
