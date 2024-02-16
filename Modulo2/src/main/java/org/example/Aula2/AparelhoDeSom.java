@@ -21,7 +21,6 @@ public class AparelhoDeSom {
     private Boolean usbConectado;
     private Disco disco;
 
-
     //Ações
 
     public void ligar() {

@@ -1,0 +1,31 @@
+1 - Criar a representação de um executor de disco (aparelho de som).
+ - Lembre-se de mapear as caracteristicas
+ - Lembre-se de criar as ações possíveis.
+    - As ação não precisam ser implementadas, apenas declaradas.
+
+2 - Analise a sua classe, aquela criada para representar um executor de disco, e crie os
+construtores que julgar necessário. Sua classe deve ter no mínimo um construtor, mesmo que vazio.
+
+3 - Executar o disco
+ - Criar no minimo um disco
+ - Criar um executor de disco
+ - Reproduzir a faixa um do disco. Lembre-se que pode ser necessário adicionar o disco no executor primeiro.
+
+4 - Análise a classe Disco e ExecutorDeDisco, levante quais as caracteristicas e as torne privadas.
+Na classe ExecutorDeDisco existe uma ação(método) que também deve ser privado. Ações podem ser privadas para
+acesso apenas do objeto.
+
+5 - Criar executor de disco com as seguintes caracteristicas:
+ - Multiplos discos
+ - Seleção de disco
+ - Controle de volume (aumentar e diminuir)
+ - Controle de faixa (tocar desde a primeira, avançar, retroceder)
+ - Controle de reprodução
+    - Reproduzir
+    - Pausar
+    - Parar
+Lembre-se que os método devem ser implementados e não apenas declarados.
+Utilize o console para interação com o usuário.
+
+6 - Crie uma especificação(herança) para Disco (Disco de vinil ou Disco compacto) e,
+também crie uma especificação de executor para reproduzir o disco que você criou.
