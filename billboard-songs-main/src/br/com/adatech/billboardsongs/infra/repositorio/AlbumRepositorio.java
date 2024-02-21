@@ -7,6 +7,7 @@ import br.com.adatech.billboardsongs.modelo.Artista;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class AlbumRepositorio extends AbstractRepositorio {
 
@@ -14,50 +15,83 @@ public class AlbumRepositorio extends AbstractRepositorio {
         super(bancoDeDados);
     }
 
-    /*protected BancoDeDados bancoDeDados;*/
     @Override
     protected Class classeModelo() {
         return Album.class;
     }
 
-    /*public AlbumRepositorio(BancoDeDados bancoDeDados) {
-        this.bancoDeDados = bancoDeDados;
-    }*/
-
-   /* public void gravar(Object objeto) {
-        this.bancoDeDados.inserirObjeto(objeto);
-    }*/
-
-
-    /*public  List listar() {
-        List objetosPresentesNoBanco = this.bancoDeDados.buscarObjetosPorTipo(Album.class);
-        return Collections.unmodifiableList(objetosPresentesNoBanco);
-    }*/
-
-
-    public List consultarAlbumPorAutor(Artista artista) {
-        List albums = listar();
-        List albumsDoArtista = new ArrayList();
-
-        for(Object objeto : albums) {
-            Album album = (Album) objeto;
-            if(artista.equals(album.getAutor()))
-                albumsDoArtista.add(album);
+    @Override
+    public void gravar(Object objeto) {
+        Album album = (Album) objeto;
+        if (album.getId() == null) {
+            album.setId(bancoDeDados.proximoId());
         }
-        return albumsDoArtista;
+        super.gravar(objeto);
     }
 
-
-
-    public Album consultarAlbumPorNome(String nome) {
-        List albums = listar();
-
-        for(Object objeto : albums) {
+    public List consultarPorNome(String nome) {
+        List albuns = listar();
+        List albumComONomeBuscado = new ArrayList();
+        for (Object objeto : albuns) {
             Album album = (Album) objeto;
-            if(nome.equals(album.getNome()))
-                return album;
+            if (compararNomeAlbum(album, nome)) {
+                albumComONomeBuscado.add(album);
+            }
         }
-        return null;
+        return albumComONomeBuscado;
+    }
+
+    public List consultarPorAutor(Artista autor) {
+        List albuns = listar();
+        List albunsDoAutor = new ArrayList();
+        for (Object objeto : albuns) {
+            Album album = (Album) objeto;
+            if (compararAutor(album, autor)) {
+                albunsDoAutor.add(album);
+            }
+        }
+        return albunsDoAutor;
+    }
+
+    public List consultarPorAutorOuNome(Artista autor, String nomeDoAlbum) {
+        List albuns = listar();
+        List albunsFiltrado = new ArrayList();
+        for (Object objeto : albuns) {
+            Album album = (Album) objeto;
+            if (compararNomeAlbum(album, nomeDoAlbum)
+                    || compararAutor(album, autor)) {
+                albunsFiltrado.add(album);
+            }
+        }
+        return albunsFiltrado;
+    }
+
+    @Override
+    protected Boolean filtraPorId(Object objeto, Long id) {
+        Album album = (Album) objeto;
+        return Objects.equals(album.getId(), id);
+    }
+
+    private Boolean compararAutor(Album album, Artista autor) {
+        return autor != null
+                && autor.getNome() != null
+                && album.getAutor() != null
+                && album.getAutor().getNome() != null
+                && autor.getNome().equalsIgnoreCase(album.getAutor().getNome());
+    }
+
+    private Boolean compararNomeAlbum(Album album, String nomeParaComparacao) {
+        return album.getNome() != null
+                && nomeParaComparacao != null
+                && album.getNome().contains(nomeParaComparacao);
+        /*if (album.getNome() != null
+                && nomeParaComparacao != null
+                && album.getNome().contains(nomeParaComparacao)
+        ) {
+            return true;
+        } else {
+            return false;
+        }*/
     }
 
 }

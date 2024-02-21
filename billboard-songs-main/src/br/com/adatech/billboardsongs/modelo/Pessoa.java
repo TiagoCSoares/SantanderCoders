@@ -2,6 +2,7 @@ package br.com.adatech.billboardsongs.modelo;
 
 public abstract class Pessoa {
 
+    private Long id;
     private String nome;
     private Boolean ativo;
 
@@ -24,6 +25,14 @@ public abstract class Pessoa {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }
