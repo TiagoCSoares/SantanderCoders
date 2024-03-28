@@ -65,7 +65,6 @@ public class MainHorarios {
                 //.forEach(System.out::println);
                 .forEach(registro -> System.out.println(registro.getNome() +
                         ", você ganhou um dia de folga"));
-
     }
 
 }
